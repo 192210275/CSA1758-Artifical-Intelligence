@@ -1,0 +1,20 @@
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+    traversal_order = [start]
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            traversal_order.extend(dfs(graph, neighbor, visited))
+    return traversal_order
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+start_node = 'A'
+result = dfs(graph, start_node)
+print("DFS Traversal Order:", result)
