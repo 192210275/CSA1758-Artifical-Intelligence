@@ -1,0 +1,18 @@
+def vacuum_cleaner():
+    rooms = {'A': 'dirty', 'B': 'dirty'}
+    agent_position = 'A'
+    steps = []
+    while 'dirty' in rooms.values():
+        current_status = rooms[agent_position]
+        steps.append(f"Vacuum in {agent_position}, Status: {current_status}")
+        if current_status == 'dirty':
+            rooms[agent_position] = 'clean'
+            steps.append(f"Cleaned {agent_position}")
+        if 'dirty' in rooms.values():
+            agent_position = 'B' if agent_position == 'A' else 'A'
+            steps.append(f"Moved to {agent_position}")
+    steps.append("Both rooms are clean.")
+    return steps
+steps = vacuum_cleaner()
+for step in steps:
+    print(step)
