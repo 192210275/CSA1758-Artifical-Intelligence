@@ -1,0 +1,15 @@
+def minimax(state, depth, is_max): 
+    if state in scores: return scores[state]
+    if is_max: return max(minimax(s, depth + 1, False) for s in next_states[state])
+    else: return min(minimax(s, depth + 1, True) for s in next_states[state])
+
+n = int(input("Enter number of states: "))
+next_states = {}
+for _ in range(n):
+    state, *children = map(int, input("Enter state and its children: ").split())
+    next_states[state] = children
+scores = {}
+for _ in range(int(input("Enter number of terminal states: "))):
+    state, value = map(int, input("Enter terminal state and its score: ").split())
+    scores[state] = value
+print("Optimal value for MAX:", minimax(0, 0, True))
